@@ -574,6 +574,9 @@ tables:
     - name: name_zh
       key: name:zh
       type: string
+    - name: name_sv
+      key: name:sv
+      type: string
     type_mappings:
       polygons:
           railway:

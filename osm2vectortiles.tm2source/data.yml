@@ -878,6 +878,7 @@ Layer:
             coalesce(NULLIF(name_fr, ''), name) AS name_fr,
             coalesce(NULLIF(name_de, ''), name) AS name_de,
             coalesce(NULLIF(name_ru, ''), name) AS name_ru,
+            coalesce(NULLIF(name_sv, ''), name) AS name_sv,
             coalesce(NULLIF(name_zh, ''), name) AS name_zh,
             nullif(ref, '') AS ref,
             nullif(char_length(ref), 0) AS reflen,
@@ -925,6 +926,7 @@ Layer:
       name_fr: French name of the road
       name_ru: Russian name of the road
       name_zh: Chinese name of the road
+      name_sv: Swedish name of the road
       ref: Route number of the road
       reflen: Number. How many characters long the ref tag is. Useful for shield styling.
       shield: "The shield style to use. One of: default, mx-federal, mx-state, us-highway, us-highway-alternate, us-highway-business, us-highway-duplex, us-interstate, us-interstate-business, us-interstate-duplex, us-interstate-truck, us-state"
