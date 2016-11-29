@@ -49,6 +49,8 @@ system:
     - rail
     - light_rail
     - subway
+    minor_rail:
+    - tram
     aerialway:
     - cable_car
     - gondola

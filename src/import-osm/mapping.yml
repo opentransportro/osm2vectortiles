@@ -583,6 +583,7 @@ tables:
           - rail
           - light_rail
           - subway
+          - tram
           highway:
           - motorway
           - motorway_link
@@ -633,6 +634,7 @@ tables:
           - rail
           - light_rail
           - subway
+          - tram
           highway:
           - motorway
           - motorway_link
