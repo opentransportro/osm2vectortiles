@@ -820,6 +820,9 @@ tables:
       type: string
     - name: type
       type: mapping_value
+    filters:
+      exclude_tags:
+      - [ "tunnel", "yes" ]
     mapping:
       barrier:
       - ditch
