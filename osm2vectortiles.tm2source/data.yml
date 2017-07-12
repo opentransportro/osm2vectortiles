@@ -680,6 +680,7 @@ Layer:
             coalesce(NULLIF(name_ru, ''), name) AS name_ru,
             coalesce(NULLIF(name_zh, ''), name) AS name_zh,
             coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+            name_sv AS name_sv_nodefault,
             type,
             CASE WHEN is_capital THEN 2 ELSE capital END AS capital,
             NULL AS ldir,
@@ -744,6 +745,7 @@ Layer:
       name_ru: Russian name of the place
       name_zh: Chinese name of the place
       name_sv: Swedish name of the place
+      name_sv_nodefault: Swedish name of the place
       scalerank: Number, 0-9 or null. Useful for styling text & marker sizes.
       type: "One of: city, town, village, hamlet, suburb, neighbourhood, island, islet, archipelago, residential, aboriginal_lands"
     properties: 
@@ -773,7 +775,8 @@ Layer:
           coalesce(NULLIF(name_de, ''), name) AS name_de,
           coalesce(NULLIF(name_ru, ''), name) AS name_ru,
           coalesce(NULLIF(name_zh, ''), name) AS name_zh,
-          coalesce(NULLIF(name_sv, ''), name) AS name_sv
+          coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+          name_sv AS name_sv_nodefault
           FROM (
             SELECT * FROM water_label_z10
             WHERE z(!scale_denominator!) = 10
@@ -805,6 +808,7 @@ Layer:
       name_ru: Russian name of the water body
       name_zh: Chinese name of the water body
       name_sv: Swedish name of the water body
+      name_sv_nodefault: Swedish name of the water body
     properties: 
       "buffer-size": 64
     srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
@@ -831,6 +835,7 @@ Layer:
               coalesce(NULLIF(name_ru, ''), name) AS name_ru,
               coalesce(NULLIF(name_zh, ''), name) AS name_zh,
               coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+              name_sv AS name_sv_nodefault,
               format_type(type) AS type,
               CASE WHEN name = '' THEN NULL
                    ELSE poi_label_scalerank(type, area)
@@ -856,6 +861,7 @@ Layer:
       name_ru: Russian name of the POI
       name_zh: Chinese name of the POI
       name_sv: Swedish name of the POI
+      name_sv_nodefault: Swedish name of the POI
       ref: Short reference code, if any
       scalerank: Number. 1-5. Useful for styling icon sizes and minimum zoom levels.
       type: The original OSM tag value
@@ -892,6 +898,7 @@ Layer:
             coalesce(NULLIF(name_ru, ''), name) AS name_ru,
             coalesce(NULLIF(name_zh, ''), name) AS name_zh,
             coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+            name_sv AS name_sv_nodefault,
             nullif(ref, '') AS ref,
             nullif(char_length(ref), 0) AS reflen,
             round(MercLength(geometry)) AS len,
@@ -939,6 +946,7 @@ Layer:
       name_ru: Russian name of the road
       name_zh: Chinese name of the road
       name_sv: Swedish name of the road
+      name_sv_nodefault: Swedish name of the road
       ref: Route number of the road
       reflen: Number. How many characters long the ref tag is. Useful for shield styling.
       shield: "The shield style to use. One of: default, mx-federal, mx-state, us-highway, us-highway-alternate, us-highway-business, us-highway-duplex, us-interstate, us-interstate-business, us-interstate-duplex, us-interstate-truck, us-state"
@@ -1008,6 +1016,7 @@ Layer:
           coalesce(NULLIF(name_ru, ''), name) AS name_ru,
           coalesce(NULLIF(name_zh, ''), name) AS name_zh,
           coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+          name_sv AS name_sv_nodefault,
           type, type AS class
           FROM (
             SELECT * FROM waterway_label_z13
@@ -1032,6 +1041,7 @@ Layer:
       name_ru: Russian name of the waterway
       name_zh: Chinese name of the waterway
       name_sv: Swedish name of the waterway
+      name_sv_nodefault: Swedish name of the waterway
       type: "One of: river, canal, stream"
     properties: 
       "buffer-size": 8
@@ -1060,6 +1070,7 @@ Layer:
           coalesce(NULLIF(name_ru, ''), name) AS name_ru,
           coalesce(NULLIF(name_zh, ''), name) AS name_zh,
           coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+          name_sv AS name_sv_nodefault,
           coalesce(NULLIF(iata, ''), NULLIF(ref, ''), NULLIF(icao, ''), faa) AS ref,
           airport_label_class(kind, type) AS maki,
           airport_label_scalerank(airport_label_class(kind, type), area, aerodrome) AS scalerank
@@ -1080,6 +1091,7 @@ Layer:
       name_ru: Russian name of the airport
       name_zh: Chinese name of the airport
       name_sv: Swedish name of the airport
+      name_sv_nodefault: Swedish name of the airport
       ref: A 3-4 character IATA, FAA, ICAO, or other reference code
       scalerank: Number 1-4. Useful for styling icon sizes.
     properties: 
@@ -1109,6 +1121,7 @@ Layer:
           coalesce(NULLIF(name_ru, ''), name) AS name_ru,
           coalesce(NULLIF(name_zh, ''), name) AS name_zh,
           coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+          name_sv AS name_sv_nodefault,
           rail_station_class(type) AS maki,
           rail_station_class(type) AS network
           FROM (
@@ -1133,6 +1146,7 @@ Layer:
       name_ru: Russian name of the rail station
       name_zh: Chinese name of the rail station
       name_sv: Swedish name of the rail station
+      name_sv_nodefault: Swedish name of the rail station
       network: The network(s) that the station serves. Useful for icon styling.
     properties: 
       "buffer-size": 64
@@ -1163,7 +1177,8 @@ Layer:
           coalesce(NULLIF(name_de, ''), name) AS name_de,
           coalesce(NULLIF(name_ru, ''), name) AS name_ru,
           coalesce(NULLIF(name_zh, ''), name) AS name_zh,
-          coalesce(NULLIF(name_sv, ''), name) AS name_sv
+          coalesce(NULLIF(name_sv, ''), name) AS name_sv,
+          name_sv AS name_sv_nodefault
           FROM mountain_peak_label_z12toz14
           WHERE geometry && !bbox!
             AND z(!scale_denominator!) BETWEEN 12 AND 14
@@ -1183,6 +1198,7 @@ Layer:
       name_ru: Russian name of the mountain peak
       name_zh: Chinese name of the mountain peak
       name_sv: Swedish name of the mountain peak
+      name_sv_nodefault: Swedish name of the mountain peak
     properties: 
       "buffer-size": 64
     srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
