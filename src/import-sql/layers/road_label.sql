@@ -11,7 +11,7 @@ CREATE OR REPLACE VIEW road_label_z11 AS
            is_tunnel, is_bridge, is_ford, construction, tracktype, service, access,
            name, name_fr, name_en, name_de, name_es, name_ru, name_zh, name_sv, geometry
     FROM osm_road_geometry
-    WHERE type IN ('motorway', 'motorway_link', 'primary', 'primary_link', 'trunk', 'trunk_link', 'secondary', 'secondary_link')
+    WHERE type IN ('motorway', 'primary', 'trunk', 'secondary')
       AND (name <> '' OR ref <> '');
 
 CREATE OR REPLACE VIEW road_label_z12toz13 AS
@@ -19,8 +19,7 @@ CREATE OR REPLACE VIEW road_label_z12toz13 AS
            is_tunnel, is_bridge, is_ford, construction, tracktype, service, access,
            name, name_fr, name_en, name_de, name_es, name_ru, name_zh, name_sv, geometry
     FROM osm_road_geometry
-    WHERE type IN ('motorway', 'motorway_link', 'primary', 'primary_link', 'trunk', 'trunk_link', 'secondary', 'secondary_link',
-        'tertiary', 'tertiary_link', 'residential', 'unclassified', 'living_street', 'construction', 'rail', 'monorail', 'narrow_gauge', 'subway', 'tram')
+    WHERE type IN ('motorway', 'primary', 'trunk', 'secondary')
       AND name <> '';
 
 CREATE OR REPLACE VIEW road_label_z14 AS
