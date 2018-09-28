@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libgdal-dev \
     libproj-dev \
-    libjson0-dev \
+    libjson-c-dev \
     xsltproc \
     docbook-xsl \
     docbook-mathml \
