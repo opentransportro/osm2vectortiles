@@ -777,7 +777,6 @@ tables:
       - reservoir
       natural:
       - water
-      - bay
       waterway:
       - river
       - riverbank
