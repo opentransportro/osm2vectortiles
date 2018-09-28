@@ -19,7 +19,7 @@ CREATE OR REPLACE VIEW admin_z3 AS
     WHERE maritime = 1 AND admin_level = 2
     UNION ALL
     SELECT 0 AS osm_id, geom AS geometry, 4 AS admin_level, 0 AS disputed, 0 AS maritime
-    FROM ne_10m_admin_1_states_provinces_lines_shp
+    FROM ne_10m_admin_1_states_provinces_lines
     WHERE scalerank = 2;
 
 CREATE OR REPLACE VIEW admin_z4toz5 AS
@@ -31,7 +31,7 @@ CREATE OR REPLACE VIEW admin_z4toz5 AS
     WHERE maritime = 1 AND admin_level = 2
     UNION ALL
     SELECT 0 AS osm_id, geom AS geometry, 4 AS admin_level, 0 AS disputed, 0 AS maritime
-    FROM ne_10m_admin_1_states_provinces_lines_shp
+    FROM ne_10m_admin_1_states_provinces_lines
     WHERE scalerank BETWEEN 2 AND 6;
 
 CREATE OR REPLACE VIEW admin_z6 AS
@@ -43,7 +43,7 @@ CREATE OR REPLACE VIEW admin_z6 AS
     WHERE maritime = 1 AND admin_level = 2
     UNION ALL
     SELECT 0 AS osm_id, geom AS geometry, 4 AS admin_level, 0 AS disputed, 0 AS maritime
-    FROM ne_10m_admin_1_states_provinces_lines_shp
+    FROM ne_10m_admin_1_states_provinces_lines
     WHERE scalerank BETWEEN 2 AND 9;
 
 CREATE OR REPLACE VIEW admin_z7toz14 AS
