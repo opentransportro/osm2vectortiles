@@ -11,12 +11,14 @@ cache:
   volumes:
   - /data/cache
 postgis:
+  # Not available
   image: "osm2vectortiles/postgis"
   volumes_from:
    - pgdata
   ports:
    - "5432"
 import-osm:
+  # Not available
   image: "osm2vectortiles/import-osm"
   command: ./import-pbf.sh
   volumes:
@@ -28,6 +30,7 @@ import-osm:
   environment:
      DIFFS: 'true'
 import-osm-diff:
+  # Not available
   image: "osm2vectortiles/import-osm"
   command: ./import-diff.sh
   volumes:
@@ -38,6 +41,7 @@ import-osm-diff:
   links:
    - postgis:db
 update-osm-diff:
+  # Not available
   image: "osm2vectortiles/import-osm"
   command: ./import-osmupdate.sh
   volumes:
@@ -45,25 +49,30 @@ update-osm-diff:
   environment:
      OSM_UPDATE_BASEURL: "http://download.geofabrik.de/europe/liechtenstein-updates/"
 merge-osm-diff:
+  # Not available
   image: "osm2vectortiles/import-osm"
   command: ./import-mergediffs.sh
   volumes:
    - ./import:/data/import
 import-external:
+  # Not available
   image: "osm2vectortiles/import-external"
   links:
   - postgis:db
 import-labels:
+  # Not available
   image: "osm2vectortiles/import-external"
   command: ./import-labels.sh
   links:
   - postgis:db
 import-natural-earth:
+  # Not available
   image: "osm2vectortiles/import-external"
   command: ./import-natural-earth.sh
   links:
   - postgis:db
 import-water:
+  # Not available
   image: "osm2vectortiles/import-external"
   command: ./import-water.sh
   links:
@@ -94,6 +103,7 @@ merge-jobs:
   links:
    - rabbitmq:rabbitmq
 export-worker:
+  # Not available
   image: "osm2vectortiles/export"
   command: ./export-worker.sh
   volumes:
@@ -109,6 +119,7 @@ export-worker:
     RENDER_TIMEOUT: "300"
     TILE_TIMEOUT: "1800000"
 export:
+  # Not available
   image: "osm2vectortiles/export"
   command: ./export-local.sh
   volumes:
@@ -122,6 +133,7 @@ export:
     MIN_ZOOM: "0"
     MAX_ZOOM: "14"
 export-list:
+  # Not available
   image: "osm2vectortiles/export"
   command: ./export-list.sh
   volumes:
@@ -130,6 +142,7 @@ export-list:
   links:
    - postgis:db
 import-sql:
+  # Not available
   image: "osm2vectortiles/import-sql"
   links:
    - postgis:db
