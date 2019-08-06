@@ -12,9 +12,21 @@ make import-osm
 make import-sql
 ```
 
-Install `azure-cli`
+Install `azcopy`
 
-Set access key or login (`az login`)
+```
+wget -O azcopyv10.tar https://azcopyvnext.azureedge.net/release20190703/azcopy_linux_amd64_10.2.1.tar.gz
+
+tar -xf azcopyv10.tar --strip-components=1
+
+sudo chmod +x azcopy && sudo mv azcopy /usr/bin/
+```
+
+Set valid [Azure SAS-key](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for Azure storage blob container.
+
+```
+export AZURE_STORAGE_SAS_ACCESS_KEY=<mysecretkey>
+```
 
 # Crontab
 
