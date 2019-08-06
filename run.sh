@@ -13,7 +13,7 @@ export MIN_SIZE=660000000
 
 rm -f export/tiles.mbtiles
 rm -f import/finland-latest.osm.pbf
-curl -sSfL "http://dev.hsl.fi/osm.finland/finland.osm.pbf" -o import/finland-latest.osm.pbf
+curl -sSfL "https://karttapalvelu.storage.hsldev.com/finland.osm/finland.osm.pbf" -o import/finland-latest.osm.pbf
 
 docker-compose stop
 docker-compose rm -f
