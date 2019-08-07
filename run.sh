@@ -3,8 +3,8 @@ set -e
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-export AZURE_STORAGE_ACCOUNT=hsltiles
-export AZURE_STORAGE_ACCESS_KEY=
+export AZURE_STORAGE_ACCOUNT=hslstoragekarttatuotanto
+export AZURE_BLOB_SAS_ACCESS_KEY=
 
 export CONTAINER_NAME=tiles
 export BLOB_NAME=tiles.mbtiles
@@ -42,6 +42,7 @@ if [ $(wc -c <"$FILENAME") -lt $MIN_SIZE ]; then
     exit 1
 fi
 
+URL_WITH_SAS="https://"$AZURE_STORAGE_ACCOUNT".blob.core.windows.net/"$CONTAINER_NAME"/"$FILENAME"?"$AZURE_BLOB_SAS_ACCESS_KEY
 echo "Uploading..."
-az storage blob upload -f $FILENAME -c $CONTAINER_NAME -n $BLOB_NAME
+azcopy $FILENAME $URL_WITH_SAS
 echo "Done"
