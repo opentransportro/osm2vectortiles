@@ -22,10 +22,10 @@ tar -xf azcopyv10.tar --strip-components=1
 sudo chmod +x azcopy && sudo mv azcopy /usr/bin/
 ```
 
-Set valid [Azure SAS-key](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for Azure storage blob container.
+Set valid [Azure SAS-key](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) with write access for Azure storage blob container.
 
 ```
-export AZURE_STORAGE_SAS_ACCESS_KEY=<mysecretkey>
+export AZURE_BLOB_SAS_ACCESS_KEY=<mysecretkey>
 ```
 
 # Crontab

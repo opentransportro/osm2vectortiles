@@ -9,10 +9,14 @@ export AZURE_BLOB_SAS_ACCESS_KEY=
 export CONTAINER_NAME=tiles
 export BLOB_NAME=tiles.mbtiles
 export FILENAME=export/tiles.mbtiles
+export PREVIOUS_EXPORT_FILENAME=export/prev/old_tiles.mbtiles
 export MIN_SIZE=660000000
 
-rm -f export/tiles.mbtiles
-rm -f import/finland-latest.osm.pbf
+if [ -f $FILENAME ]; then
+   mkdir -p export/prev
+   mv -f $FILENAME $PREVIOUS_EXPORT_FILENAME
+fi
+
 curl -sSfL "https://karttapalvelu.storage.hsldev.com/finland.osm/finland.osm.pbf" -o import/finland-latest.osm.pbf
 
 docker-compose stop
@@ -30,7 +34,7 @@ docker-compose run import-sql
 
 docker-compose run -e BBOX="18.9832098,59.3541578,31.6867044,70.1922939" -e MIN_ZOOM="0" -e MAX_ZOOM="14" export
 
-docker volume rm $(docker volume ls)
+docker-compose down -v
 
 if [ ! -f $FILENAME ]; then
     (>&2 echo "File not found, exiting")
