@@ -1,3 +1,4 @@
+## [See RUN.md for HSL specific instructions](RUN.md)
 # OSM2VectorTiles
 
 :warning: *OSM2VectorTiles is claimed to be breaching intellectual property rights of Mapbox Inc. by implementing schema of vector tiles designed by this company (details in #387). It is not recommended to use this project in production systems. The project is no longer maintained. Please switch to the successor project* **https://openmaptiles.org** which implements a new open Vector Tile Schema free of similar claims https://openmaptiles.org/schema/.
