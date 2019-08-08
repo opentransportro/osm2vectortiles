@@ -46,8 +46,8 @@ if [ $(wc -c <"$FILENAME") -lt $MIN_SIZE ]; then
 fi
 
 if [ -z "$AZURE_BLOB_SAS_ACCESS_KEY" ]; then
-      (>&2 echo "\$AZURE_BLOB_SAS_ACCESS_KEY is empty. Cannot upload mbtiles to Blob, exiting")
-      exit 1
+    (>&2 echo "\$AZURE_BLOB_SAS_ACCESS_KEY is empty. Cannot upload mbtiles to Blob, exiting")
+    exit 1
 fi
 
 URL="https://"$AZURE_STORAGE_ACCOUNT".blob.core.windows.net/"$CONTAINER_NAME"/"$FILENAME
