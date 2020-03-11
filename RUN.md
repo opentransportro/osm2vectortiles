@@ -4,7 +4,7 @@ Build vector tile package and upload it to Azure blob storage
 
 # Prerequisites
 
-Clone `hsldevcom/osm2vectortiles`
+Clone `opentransportro/osm2vectortiles`
 
 Build local images that include swedish names etc.:
 ```
@@ -35,6 +35,8 @@ Open crontab for editing:
 crontab -e
 ```
 If you run the the script with crontab, you need to make sure crontab has access to env AZURE_BLOB_SAS_ACCESS_KEY.
+
+Before running the script make sure that you set the bounding area correctly. You can do this with [http://bboxfinder.com](http://bboxfinder.com/#43.612217,20.170898,48.334343,29.888306).
 
 Add the following lines (notice the absolute paths that have to be updated):
 ```

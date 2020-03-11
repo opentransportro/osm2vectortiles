@@ -3,20 +3,20 @@ set -e
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-export AZURE_STORAGE_ACCOUNT=hslstoragekarttatuotanto
+export AZURE_STORAGE_ACCOUNT=
 
 export CONTAINER_NAME=tiles
 export BLOB_NAME=tiles.mbtiles
 export FILENAME=export/tiles.mbtiles
 export PREVIOUS_EXPORT_FILENAME=export/prev/old_tiles.mbtiles
-export MIN_SIZE=660000000
+export MIN_SIZE=400000000
 
 if [ -f $FILENAME ]; then
     mkdir -p export/prev
     mv -f $FILENAME $PREVIOUS_EXPORT_FILENAME
 fi
 
-curl -sSfL "https://karttapalvelu.storage.hsldev.com/finland.osm/finland.osm.pbf" -o import/finland-latest.osm.pbf
+curl -SfL "https://download.geofabrik.de/europe/romania-latest.osm.pbf" -o import/romania-latest.osm.pbf
 
 docker-compose stop
 docker-compose rm -f
@@ -31,7 +31,7 @@ docker-compose up import-osm
 
 docker-compose run import-sql
 
-docker-compose run -e BBOX="18.9832098,59.3541578,31.6867044,70.1922939" -e MIN_ZOOM="0" -e MAX_ZOOM="14" export
+docker-compose run -e BBOX="20.170898,43.612217,29.888306,48.334343" -e MIN_ZOOM="0" -e MAX_ZOOM="14" export
 
 docker-compose down -v
 
